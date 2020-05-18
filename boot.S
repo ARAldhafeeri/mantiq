@@ -1,4 +1,5 @@
 .section ".text.boot"
+
 .global _start
 
 _start:
@@ -25,7 +26,7 @@ _start:
 
     1dr r3, =kernel_main
     blx r3
-    
+
 halt:
     wfe
     b halt
