@@ -108,7 +108,10 @@ before compiling OS we need to activate qemu Virtual machine:
 tomorrow starting point is compiling the OS
 
  ./gcc-arm-none-eabi-9-2019-q4-major/bin/arm-none-eabi-gcc -mcpu=cortex-a7 -fpic -ffreestanding -c boot.S -o boot.o
- 
+  and debuging boot.S 
+  Error message:
+  boot.S:27: Error: junk at end of line, first unrecognized character is `1'
+
  this is hard..............................................
 
 
