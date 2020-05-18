@@ -64,7 +64,52 @@ after installing the virutal machine quem check if it is working:
 
 Contain the assembly code for the first thing that the hardware executes in our kernel. A language which the hardware can understand. 
 
+### kernel.c:
+Here we handle our basic I/O thorugh UART. Later on, forsure I want to implement more advanced I/O such TTL for a starter.
 
+mmio method: mmio, stands for memory mapped IO, basic way that the hardware using the kenral communicate with memory in predefined memory addresses.
+
+
+So all the UART_xxxx addresses is nothing but incrementing the base address which is in raspberry pi 0x0x3F000000 by a set of values so we have a unique address for each peripheral. They range from 0x00000000 to 0xBFFFFFFFFF
+
+Both mmio_read and mmio_write read in a register from the memory address.
+
+delay() is used to slow down the code for wirtting/ reading processes.
+
+enum is predfined offsets for the GPIO and the UART. 
+
+uart_init : gets the UART hardware ready for use.
+
+uart_putc(), uartgetc(), uart_puts() for reading and writing text.
+
+kernel_main:
+where our bootloader hands over the control to our kenral. 
+atags contain the atags pointer. Where information about the hardware is stored. 
+
+### linker.ld :
+  .  means the current address. 
+  here we assign the current address and assign things to it. 
+  .text >>> executable code
+  .rodata >>> read only data
+  .data >>>> global varibles intilized at compile time ad stored.
+  .bss >>> uninitialized global variables. 
+  
+  ENTRY(_start ) 
+  declares the _start from boot.S
+  the rest assigning addresses and declaring( .text, .rodata, .data, .bss) all put to the nearest 4096 ( page alignment ALIGN(4096) )
+  
+  
+  At this point the OS is ready to run and compile. 
+
+before compiling OS we need to activate qemu Virtual machine:
+
+5-19-2020 :
+
+tomorrow starting point is compiling the OS
+
+ ./gcc-arm-none-eabi-9-2019-q4-major/bin/arm-none-eabi-gcc -mcpu=cortex-a7 -fpic -ffreestanding -c boot.S -o boot.o
+ 
+ this is hard..............................................
 
 
 
