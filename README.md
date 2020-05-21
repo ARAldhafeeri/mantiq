@@ -114,5 +114,5 @@ tomorrow starting point is compiling the OS
 
  this is hard..............................................
 
-
+Successfully compiled. I will stop here, Low-level language is not for me.
 
